@@ -34,12 +34,13 @@ public class PerfomanceLabTest extends BaseTest {
         googlePage.Search(PL_TEXT_VALUE);
         googlePage.clickResult("Перфоманс Лаб - Услуги по тестированию");
         PerfomanceLabPage perfomanceLabPage = new PerfomanceLabPage();
-        //Заметил баг на target=_blank сделал проверку - дополнительно
-//        Assertions.assertEquals("self", $("[href='/website-testing']").getAttribute("target"));
+        //Заметил баг на target=_blank сделал проверку - дополнительно, обход в конструкторе перфы
+        Assertions.assertEquals("self", $("[href='/website-testing']").getAttribute("target"));
         //Метод осуществляет переход with JS, потому что display все время none :)
         MainMenu.goToWebsiteTestingPage();
         //Проверяем что кнопка узнать цену синяя.
-        Assertions.assertEquals("rgba(79, 173, 255, 1)", GET_PRICES_BUTTON.getCssValue("background-color"));
+        Assertions.assertEquals("rgba(79, 173, 265, 1)", GET_PRICES_BUTTON.getCssValue("background-color"));
+
     }
 
     /**
