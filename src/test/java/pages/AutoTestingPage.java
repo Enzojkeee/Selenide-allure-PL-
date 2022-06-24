@@ -2,27 +2,30 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.Test;
+
+import static com.codeborne.selenide.Selenide.$x;
 
 public class AutoTestingPage {
-    private static final SelenideElement EXAMPLE_OF_PROJECT_IMAGE =
+
+    private SelenideElement EXAMPLE_OF_PROJECT_IMAGE =
             Selenide.$x("//img[contains(@class, 'wp-image-1544')]");
 
-    public static void scrollToExampleImage(){
+    @Step("Scroll to Examples of projects image")
+    public void scrollToExampleImage() {
         EXAMPLE_OF_PROJECT_IMAGE.scrollIntoView(true);
     }
-
-    public static void clickToExampleImage(){
+    @Step("Click on Example of projects image")
+    public void clickToExampleImage() {
         EXAMPLE_OF_PROJECT_IMAGE.click();
     }
 
-    public static void switchUseToIframe(){
+    @Step("Switch control to contact frame")
+    public void switchUseToIframe() {
         Selenide.switchTo().frame("hubspot-Modal-Iframe");
         Selenide.switchTo().frame("hs-form-iframe-0");
     }
 
-    public static void firstNameCheck(){
-        Selenide.$x("//input[@id='firstname-ae52b19d-a506-4b2a-87c5-e1dea1fd0559']").setValue("[eq");
-
-    }
 
 }

@@ -7,6 +7,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 
 abstract public class BaseTest {
 
@@ -38,5 +43,20 @@ abstract public class BaseTest {
     public static void tearDown(){
         Selenide.closeWebDriver();
         SelenideLogger.removeListener("allure");
+    }
+
+    public String getValue(String propValue) {
+        FileInputStream fileInputStream;
+        Properties prop = new Properties();
+        try {
+            fileInputStream = new FileInputStream("src\\test\\resources\\PerfomanceLabTest.properties");
+            prop.load(fileInputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return prop.getProperty(propValue);
     }
 }

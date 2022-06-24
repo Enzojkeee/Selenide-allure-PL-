@@ -2,6 +2,8 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -14,33 +16,26 @@ public class PerfomanceLabPage {
     private final SelenideElement CLOSE_BUTTON = $x("//button[@data-ats-popup='close']");
     private final SelenideElement GET_PRICES_BUTTON = $x("[contains(text(),'Перфоманс Лаб - Услуги по тестированию']");
 
-    public PerfomanceLabPage() throws AWTException {
+    public PerfomanceLabPage() {
         closePopupWindow();
     }
 
-
-    public void closePopupWindow() throws AWTException {
-        Robot r = new Robot();
+    //Закрытие баннера
+    public void closePopupWindow() {
+        Robot r = null;
+        try {
+            r = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
         r.keyPress(KeyEvent.VK_ESCAPE);
         r.keyRelease(KeyEvent.VK_ESCAPE);
     }
 
-    public void openPerfomanceLabPage() throws AWTException {
+    @Step("Open PL page")
+    public void openPerfomanceLabPage() {
         open("https://www.performance-lab.ru/");
         closePopupWindow();
 
     }
-
-    public void goToTestingCitePage(){
-        SERVICES_AND_PRODUCTS.click();
-        SERVICES_AND_PRODUCTS.click();
-        TESTING_SITE_LINK.click();
-    }
-
-    public void closeFrame() {
-        sleep(10000);
-        Selenide.switchTo().activeElement();
-        CLOSE_BUTTON.click();
-    }
-
 }
