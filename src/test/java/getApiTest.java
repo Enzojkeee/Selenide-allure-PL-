@@ -8,7 +8,7 @@ import java.util.List;
 
 public class getApiTest {
     @Test
-    void test() throws Exception {
+    void usersGetApi() throws Exception {
         String responseAPI = getAPI.get("http://77.50.236.203:4880/users");
 //        Assertions.assertEquals(200, responseAPI);
         List<User> a = ListObjectsFromJson.getList(responseAPI);

@@ -1,5 +1,6 @@
 package API;
 
+import io.qameta.allure.Step;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
@@ -8,7 +9,7 @@ import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 
 public class getAPI {
-
+@Step("API - GET")
     public static String get(String uri) throws Exception {
         // Создаем http клиент
         try (final CloseableHttpClient httpclient = HttpClients.createDefault()) {

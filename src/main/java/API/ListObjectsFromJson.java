@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 //Обрабатываем Json response from API using Jackson
+
 public class ListObjectsFromJson {
 
     public static List<User> getList(String jsonResponse) throws IOException {

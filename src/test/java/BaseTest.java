@@ -19,19 +19,13 @@ abstract public class BaseTest {
         WebDriverManager.chromedriver().setup();
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
+        //Без окна браузера
         Configuration.headless = false;
         ChromeOptions options = new ChromeOptions();
         Configuration.pageLoadStrategy = "eager";
         Configuration.pageLoadTimeout = 90000;
 
         SelenideLogger.addListener("allure", new AllureSelenide());
-        options.addArguments("start-maximized"); // https://stackoverflow.com/a/26283818/1689770
-        options.addArguments("enable-automation"); // https://stackoverflow.com/a/43840128/1689770
-        options.addArguments("--headless"); // only if you are ACTUALLY running headless
-        options.addArguments("--no-sandbox"); //https://stackoverflow.com/a/50725918/1689770
-        options.addArguments("--disable-dev-shm-usage"); //https://stackoverflow.com/a/50725918/1689770
-        options.addArguments("--disable-browser-side-navigation"); //https://stackoverflow.com/a/49123152/1689770
-        options.addArguments("--disable-gpu");
 
     }
     @BeforeEach

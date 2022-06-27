@@ -14,8 +14,8 @@ public class UserEquals {
                 if (sqlobj.getId()!=apiobj.getId()){
                     result = false;
                 } else if (sqlobj.getId()==apiobj.getId()) {
-                    if (sqlobj.getSex()==apiobj.getSex() && sqlobj.getFirstName()==apiobj.getFirstName() &&
-                            sqlobj.getSecondName()==apiobj.getSecondName() && sqlobj.getAge()==apiobj.getAge() &&
+                    if (sqlobj.getSex().contains(apiobj.getSex()) && sqlobj.getFirstName().contains(apiobj.getFirstName()) &&
+                            sqlobj.getSecondName().contains(apiobj.getSecondName()) && sqlobj.getAge()==apiobj.getAge() &&
                             sqlobj.getMoney() == apiobj.getMoney())
                     {
                     result = true;

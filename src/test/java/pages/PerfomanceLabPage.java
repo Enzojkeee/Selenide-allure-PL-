@@ -11,10 +11,6 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class PerfomanceLabPage {
 
-    private final SelenideElement TESTING_SITE_LINK = $x("//a[@href='/website-testing']");
-    private final SelenideElement SERVICES_AND_PRODUCTS = $x("//a[contains(text(), 'Услуги и продукты')]");
-    private final SelenideElement CLOSE_BUTTON = $x("//button[@data-ats-popup='close']");
-    private final SelenideElement GET_PRICES_BUTTON = $x("[contains(text(),'Перфоманс Лаб - Услуги по тестированию']");
 
     public PerfomanceLabPage() {
         closePopupWindow();
