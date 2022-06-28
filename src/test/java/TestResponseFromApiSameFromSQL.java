@@ -1,32 +1,37 @@
+import API.ClientApi;
 import API.ListObjectsFromJson;
 import API.getAPI;
-import SQL.sqlQuery;
+import SQL.SQL;
 import equalsApiSql.ConvertSexColumn;
 import equalsApiSql.UserEquals;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import user.User;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 public class TestResponseFromApiSameFromSQL {
     @Test
-    void test() throws Exception {
+    void compareSqlAndApi() throws Exception {
 
 //         Получаем ответ от API сервера
-        String responseApiString = getAPI.get("http://77.50.236.203:4880/users");
+        ClientApi clientApi = new ClientApi();
+        CloseableHttpResponse response = clientApi.getApiQuery("users");
+        String bodyResponse = clientApi.getStringFromResponse(response);
 //         Создаем список объектов из ответа API
-        List<User> responseApi = ListObjectsFromJson.getList(responseApiString);
-//         Создаем список обьектов из ответа SQL
-        List<User> responseSql = sqlQuery.sqlQuery("SELECT * FROM person");
-//          Заменяем true/false из sex column на male/female
-        ConvertSexColumn.boolToSex(responseSql);
-        System.out.println(responseSql);
-        System.out.println(responseApi);
+        List<User>userListApi = ListObjectsFromJson.getListOfObjectsFromResponse(bodyResponse, User.class);
+//          Получаем ответ от SQL
+        SQL clientSQL = new SQL();
+        ResultSet result = clientSQL.query("SELECT * FROM person");
+        //Создаем лист из пользователей
+        List<User>userListSql = clientSQL.getUserListFromResultSet(result);
+//        ConvertSexColumn.boolToSex(userListSql);
+        //Сравниваем листы
+        Assertions.assertEquals(userListSql.size(), userListApi.size());
+        Assertions.assertTrue(UserEquals.equalsUsers(userListSql, userListApi));
 
-    //        Сравниваем 2 списка
-        Assertions.assertEquals(responseSql.size(), responseApi.size());
-        Assertions.assertTrue(UserEquals.equalsUsers(responseSql, responseApi));
 
     }
 }

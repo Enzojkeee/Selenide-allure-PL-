@@ -39,18 +39,5 @@ abstract public class BaseTest {
         SelenideLogger.removeListener("allure");
     }
 
-    public String getValue(String propValue) {
-        FileInputStream fileInputStream;
-        Properties prop = new Properties();
-        try {
-            fileInputStream = new FileInputStream("src\\test\\resources\\PerfomanceLabTest.properties");
-            prop.load(fileInputStream);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        return prop.getProperty(propValue);
-    }
 }

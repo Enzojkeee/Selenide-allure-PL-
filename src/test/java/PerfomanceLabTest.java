@@ -1,3 +1,4 @@
+import Prop.PropertiesConf;
 import com.codeborne.selenide.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,8 @@ public class PerfomanceLabTest extends BaseTest {
     @Test
     public void checkButtonColorIsBlue() {
         GooglePage googlePage = new GooglePage();
-        googlePage.openGoogle(getValue("googleURL"));
-        googlePage.Search(getValue("plSearchValue"));
+        googlePage.openGoogle(PropertiesConf.getValue("googleURL"));
+        googlePage.Search(PropertiesConf.getValue("plSearchValue"));
         googlePage.clickResult("Перфоманс Лаб - Услуги по тестированию");
         PerfomanceLabPage perfomanceLabPage = new PerfomanceLabPage();
         MainMenu mainMenu = new MainMenu();
